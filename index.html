@@ -535,6 +535,42 @@
                 left: 21px;
             }
         }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: var(--gradient-hover);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -543,11 +579,13 @@
         <div class="hero">
             <img src="images/image.jpg" alt="Profile Photo" class="profile-photo">
             <h1>Mohamed Elshenawy</h1>
-            <p class="subtitle">Software Engineer | Mobile App Development | Backend Development</p>
+            <p class="subtitle">Software Engineer | Mobile App Development (Flutter, iOS, Android) | Backend (.NET Core APIs)</p>
             <p class="description">
-                Results-driven Software Engineer with 3+ years of experience in cross-platform and native mobile development. 
-                Specialized in Flutter with strong foundations in Android and iOS, delivering user-centric solutions across 
-                ERP, e-commerce, social, and lifestyle domains.
+                Results-driven Software Engineer with 3+ years of experience in cross-platform and native mobile development.
+Specialized in Flutter with strong foundations in Android (Java/Kotlin) and currently deepening expertise in iOS
+(Swift). Skilled in building scalable backend APIs using .NET Core and integrating real-time features, notifications,
+and cloud services. Proven ability to lead teams, design app architecture, and deliver user-centric solutions across
+ERP, e-commerce, social, and lifestyle domains.
             </p>
             <div class="contact-info">
                 <a href="mailto:m.elshenawy61@icloud.com" class="contact-item">
@@ -816,6 +854,10 @@
         </div>
     </footer>
 
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -893,6 +935,33 @@
         // Add floating animation to profile photo
         const profilePhoto = document.querySelector('.profile-photo');
         profilePhoto.style.animation = 'float 6s ease-in-out infinite';
+
+        // Back to Top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        // Show button when scrolling down
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY;
+            
+            // Show button when user has scrolled 80% of the page
+            const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
+            
+            if (scrollPercentage > 0.8) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top when clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
