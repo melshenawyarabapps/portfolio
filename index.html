@@ -22,6 +22,7 @@
             --surface: #f8fafc;
             --border: #e5e7eb;
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
         }
 
         body {
@@ -58,9 +59,9 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0) rotate(0); }
+            25% { transform: translateY(-10px) rotate(-2deg); }
+            75% { transform: translateY(10px) rotate(2deg); }
         }
 
         .hero {
@@ -332,6 +333,12 @@
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: var(--gradient-hover);
         }
 
         /* Projects */
@@ -342,16 +349,19 @@
         }
 
         .project-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .project-header {
@@ -440,6 +450,59 @@
             padding: 40px 0;
         }
 
+        /* Modern Animations */
+        .animate-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gradient Text Effect */
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Glass Morphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Updated Header Gradient */
+        :root {
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            25% { transform: translateY(-10px) rotate(-2deg); }
+            75% { transform: translateY(10px) rotate(2deg); }
+        }
+
+        /* Shine Effect */
+        @keyframes shine {
+            from {
+                background-position: 200% center;
+            }
+        }
+
+        .shine-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shine 4s infinite;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -484,7 +547,6 @@
     </style>
 </head>
 <body>
-<!-- ...existing code... -->
 <header>
     <div class="container">
         <div class="hero">
@@ -513,15 +575,23 @@
         </div>
     </div>
 </header>
-<!-- ...existing code... -->
-    <nav>
-        <div class="nav-container">
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#education" class="nav-link">Education</a>
-        </div>
-    </nav>
+
+<nav class="glass">
+    <div class="nav-container">
+        <a href="#experience" class="nav-link animate-hover">
+            <span class="gradient-text">Experience</span>
+        </a>
+        <a href="#skills" class="nav-link animate-hover">
+            <span class="gradient-text">Skills</span>
+        </a>
+        <a href="#projects" class="nav-link animate-hover">
+            <span class="gradient-text">Projects</span>
+        </a>
+        <a href="#education" class="nav-link animate-hover">
+            <span class="gradient-text">Education</span>
+        </a>
+    </div>
+</nav>
 
     <section id="experience">
         <div class="container">
@@ -802,6 +872,36 @@
             item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(item);
         });
+
+        // Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.project-card, .skill-category, .education-card');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardX = rect.left + rect.width / 2;
+                const cardY = rect.top + rect.height / 2;
+
+                const angleX = (mouseY - cardY) / 30;
+                const angleY = (mouseX - cardX) / -30;
+
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
+            });
+        });
+
+        // Reset card position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            const cards = document.querySelectorAll('.project-card, .skill-category, .education-card');
+            cards.forEach(card => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // Add floating animation to profile photo
+        const profilePhoto = document.querySelector('.profile-photo');
+        profilePhoto.style.animation = 'float 6s ease-in-out infinite';
     </script>
 </body>
 </html>
