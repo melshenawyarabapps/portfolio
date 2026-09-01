@@ -21,7 +21,7 @@
             --background: #ffffff;
             --surface: #f8fafc;
             --border: #e5e7eb;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
         }
 
@@ -126,14 +126,8 @@
         }
 
         @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Navigation */
@@ -225,16 +219,12 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
- .timeline-item::after {
-    display: none; /* This removes the blue circles */
-}
+        .timeline-item::after {
+            display: none; 
+        }
 
         .timeline-item:nth-child(even) {
             left: 50%;
-        }
-
-        .timeline-item:nth-child(even)::after {
-            left: -10px;
         }
 
         .timeline-content {
@@ -273,14 +263,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Skills */
@@ -315,6 +299,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
         }
 
         .skill-tag {
@@ -347,6 +332,8 @@
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -365,6 +352,14 @@
         .project-header h3 {
             font-size: 1.3rem;
             margin-bottom: 5px;
+        }
+        
+        .project-description {
+            padding: 20px 20px 0;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex-grow: 1;
         }
 
         .project-links {
@@ -441,17 +436,6 @@
             padding: 40px 0;
         }
 
-        /* Modern Animations */
-        .animate-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animate-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Gradient Text Effect */
         .gradient-text {
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -460,7 +444,6 @@
             display: inline-block;
         }
 
-        /* Glass Morphism Effect */
         .glass {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -468,75 +451,18 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        /* Updated Header Gradient */
-        :root {
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
-        }
-
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-10px) rotate(-2deg); }
-            75% { transform: translateY(10px) rotate(2deg); }
-        }
-
-        /* Shine Effect */
-        @keyframes shine {
-            from {
-                background-position: 200% center;
-            }
-        }
-
-        .shine-effect {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            background-size: 200% 100%;
-            animation: shine 4s infinite;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .contact-info {
-                gap: 15px;
-            }
-
-            .nav-container {
-                gap: 20px;
-                flex-wrap: wrap;
-            }
-
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item::after {
-                left: 21px;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0%;
-            }
-
-            .timeline-item:nth-child(even)::after {
-                left: 21px;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .nav-container { gap: 20px; flex-wrap: wrap; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .timeline-item:nth-child(even) { left: 0%; }
+            .timeline-item:nth-child(even)::after { left: 21px; }
         }
 
-        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -557,7 +483,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -579,13 +504,12 @@
         <div class="hero">
             <img src="images/image.jpg" alt="Profile Photo" class="profile-photo">
             <h1>Mohamed Elshenawy</h1>
-            <p class="subtitle">Software Engineer | Mobile App Development (Flutter, iOS, Android) | Backend (.NET Core APIs)</p>
+            <p class="subtitle">Integration Engineer (IBM ACE) | Senior Mobile App Developer | .NET Backend <!--[cite: 4] --></p>
             <p class="description">
-                Results-driven Software Engineer with 3+ years of experience in cross-platform and native mobile development.
-Specialized in Flutter with strong foundations in Android (Java/Kotlin) and currently deepening expertise in iOS
-(Swift). Skilled in building scalable backend APIs using .NET Core and integrating real-time features, notifications,
-and cloud services. Proven ability to lead teams, design app architecture, and deliver user-centric solutions across
-ERP, e-commerce, social, and lifestyle domains.
+                Results-driven Software Engineer with 4+ years of experience specializing in cross-platform and native mobile app development (Flutter, iOS, Android) alongside enterprise integration. <!--[cite: 4] -->
+                Skilled in IBM App Connect Enterprise (ACE), IBM MQ, ESQL logic, and DFDL message transformations. <!--[cite: 4] -->
+                Proven track record of architecting scalable mobile applications, backend APIs (.NET Core), and complex message-routing flows. <!--[cite: 4] -->
+                Experienced engineering team lead adept at technical system design, performance optimization, and seamless multi-platform integrations. <!--[cite: 4] -->
             </p>
             <div class="contact-info">
                 <a href="mailto:m.elshenawy61@icloud.com" class="contact-item">
@@ -607,18 +531,10 @@ ERP, e-commerce, social, and lifestyle domains.
 
 <nav class="glass">
     <div class="nav-container">
-        <a href="#experience" class="nav-link animate-hover">
-            <span class="gradient-text">Experience</span>
-        </a>
-        <a href="#skills" class="nav-link animate-hover">
-            <span class="gradient-text">Skills</span>
-        </a>
-        <a href="#projects" class="nav-link animate-hover">
-            <span class="gradient-text">Projects</span>
-        </a>
-        <a href="#education" class="nav-link animate-hover">
-            <span class="gradient-text">Education</span>
-        </a>
+        <a href="#experience" class="nav-link animate-hover"><span class="gradient-text">Experience</span></a>
+        <a href="#skills" class="nav-link animate-hover"><span class="gradient-text">Skills</span></a>
+        <a href="#projects" class="nav-link animate-hover"><span class="gradient-text">Projects</span></a>
+        <a href="#education" class="nav-link animate-hover"><span class="gradient-text">Education</span></a>
     </div>
 </nav>
 
@@ -634,7 +550,7 @@ ERP, e-commerce, social, and lifestyle domains.
                         <ul>
                             <li>Led a team of Flutter developers delivering ERP, e-commerce, sports, and social apps</li>
                             <li>Architected solutions and enforced coding standards, reducing bugs and improving maintainability</li>
-                            <li>Coordinated with stakeholders ensuring 100% on-time delivery</li>
+                            <li>Coordinated with stakeholders to align technical solutions with business requirements, ensuring 100% on-time delivery <!--[cite: 4] --></li>
                             <li>Mentored junior developers to increase productivity and collaboration</li>
                         </ul>
                     </div>
@@ -646,22 +562,21 @@ ERP, e-commerce, social, and lifestyle domains.
                         <div class="company">ASUS Company – Mansoura, Egypt</div>
                         <div class="date">Feb 2024 – Aug 2024</div>
                         <ul>
-                            <li>Built complex business logic and data processing modules for ERP systems</li>
-                            <li>Improved data handling algorithms, leading to faster system performance</li>
-                            <li>Worked on inventory, HR, and accounting modules</li>
+                            <li>Built complex business logic and data processing modules for ERP systems (inventory, HR, accounting) <!--[cite: 4] --></li>
+                            <li>Improved data handling algorithms, leading to faster system performance and smoother workflows <!--[cite: 4] --></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Software Engineer (Remote)</h3>
-                        <div class="company">Techniqium – London, UK</div>
+                        <h3>Software Engineer (Part-Time) <!--[cite: 4] --></h3>
+                        <div class="company">Techniqium – London, UK, Remote</div>
                         <div class="date">Feb 2024 – Aug 2024</div>
                         <ul>
-                            <li>Spearheaded development of the Multaqa app for global Muslim users</li>
-                            <li>Integrated geo-location services with 99% accuracy in prayer time calculations</li>
-                            <li>Implemented push notifications, boosting daily active users</li>
+                            <li>Spearheaded development of the Multaqa app, serving global Muslim users with prayer times, events, and notifications <!--[cite: 4] --></li>
+                            <li>Integrated geo-location services with 99% accuracy in time calculations <!--[cite: 4] --></li>
+                            <li>Implemented push notifications, boosting daily active users and engagement rates <!--[cite: 4] --></li>
                         </ul>
                     </div>
                 </div>
@@ -670,7 +585,7 @@ ERP, e-commerce, social, and lifestyle domains.
                     <div class="timeline-content">
                         <h3>Software Engineer</h3>
                         <div class="company">Arab Apps Company – Tanta, Egypt</div>
-                        <div class="date">Sep 2022 – Feb 2024</div>
+                        <div class="date">Jul 2022 – Feb 2024 <!--[cite: 4] --></div>
                         <ul>
                             <li>Developed social, chat, and sports apps with real-time integrations</li>
                             <li>Optimized Flutter app performance, reducing load times by 25%</li>
@@ -685,16 +600,14 @@ ERP, e-commerce, social, and lifestyle domains.
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
+                
                 <div class="skill-category">
-                    <h3>Programming Languages</h3>
+                    <h3>Enterprise Integration <!--[cite: 4] --></h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Swift</span>
-                        <span class="skill-tag">Kotlin</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">IBM ACE</span>
+                        <span class="skill-tag">IBM MQ</span>
+                        <span class="skill-tag">ESQL Logic</span>
+                        <span class="skill-tag">DFDL Transformations</span>
                     </div>
                 </div>
 
@@ -702,21 +615,31 @@ ERP, e-commerce, social, and lifestyle domains.
                     <h3>Mobile Development</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">Native iOS</span>
+                        <span class="skill-tag">Native iOS (Swift)</span>
                         <span class="skill-tag">Native Android</span>
-                        <span class="skill-tag">FCM</span>
-                        <span class="skill-tag">APNs</span>
+                        <span class="skill-tag">FCM & APNs</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3>Backend & APIs</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">.NET Core</span>
-                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">.NET Core APIs</span>
+                        <span class="skill-tag">RESTful API Design</span>
                         <span class="skill-tag">Firebase Functions</span>
-                        <span class="skill-tag">WebSockets</span>
-                        <span class="skill-tag">Socket.IO</span>
+                        <span class="skill-tag">WebSockets / Socket.IO</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ESQL <!--[cite: 4] --></span>
+                        <span class="skill-tag">Dart</span>
+                        <span class="skill-tag">Java / Kotlin</span>
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C# / C++</span>
                     </div>
                 </div>
 
@@ -724,34 +647,33 @@ ERP, e-commerce, social, and lifestyle domains.
                     <h3>Databases & Cloud</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL / MySQL</span>
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">Firestore</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Tools & Practices</h3>
+                    <h3>Testing & QA <!--[cite: 4] --></h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Agile/Scrum</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Unit Testing</span>
+                        <span class="skill-tag">Integration Testing</span>
+                        <span class="skill-tag">Debugging</span>
+                        <span class="skill-tag">Performance Opt.</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Engineering Concepts</h3>
+                    <h3>Engineering & Tools</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">OOP</span>
-                        <span class="skill-tag">SOLID Principles</span>
+                        <span class="skill-tag">OOP / SOLID</span>
                         <span class="skill-tag">Design Patterns</span>
                         <span class="skill-tag">Algorithms</span>
-                        <span class="skill-tag">Testing</span>
+                        <span class="skill-tag">Git / CI/CD</span>
+                        <span class="skill-tag">Agile/Scrum</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -760,69 +682,116 @@ ERP, e-commerce, social, and lifestyle domains.
         <div class="container">
             <h2 class="section-title">Selected Projects</h2>
             <div class="projects-grid">
+                
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Voice Chat Applications</h3>
-                        <p>Real-time communication platforms</p>
+                        <h3>Meg Chat <!--[cite: 4] --></h3>
+                        <p>Voice Chat & Social Community</p>
+                    </div>
+                    <div class="project-description">
+                        Developed a voice chat and social community app connecting users globally for interactive communication, live audio rooms, and real-time social engagement. <!--[cite: 4] -->
                     </div>
                     <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.sky.live" class="project-link">SkyChat Android</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.luno.voicechat" class="project-link">Luno Android</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.kayan.lite" class="project-link">7P Android</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.ksaseven.star" class="project-link">7Star Android</a>
-                        <a href="https://apps.apple.com/eg/app/7stars-ksa-voice-chat/id1620554347" class="project-link">7Star iOS</a>
+                        <span class="project-link">Mobile App</span>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Lifestyle & Community Apps</h3>
-                        <p>Social and community platforms</p>
+                        <h3>Kayan Chat <!--[cite: 4] --></h3>
+                        <p>Interactive Social Platform</p>
+                    </div>
+                    <div class="project-description">
+                        Developed an interactive social and voice chat mobile application designed to connect users globally through live audio rooms. <!--[cite: 4] -->
                     </div>
                     <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=io.multaqa" class="project-link">Multaqa Android</a>
-                        <a href="https://apps.apple.com/eg/app/multaqa/id6479318135" class="project-link">Multaqa iOS</a>
-                        <a href="https://apps.apple.com/us/app/snd/id6472909864" class="project-link">SND iOS</a>
-                        <a href="https://apps.apple.com/us/app/snd-plus/id6472909972" class="project-link">SND Plus iOS</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.user.trio" class="project-link">SND Android</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.provider.trio" class="project-link">SND Plus Android</a>
+                        <span class="project-link">Android</span>
+                        <span class="project-link">iOS</span>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Sports & Analytics</h3>
-                        <p>Sports tracking and analytics</p>
+                        <h3>DotScore <!--[cite: 4] --></h3>
+                        <p>Sports Analytics & Tracking</p>
+                    </div>
+                    <div class="project-description">
+                        Comprehensive sports analytics and live-score mobile application delivering real-time updates for global football leagues and tournaments. <!--[cite: 4] -->
                     </div>
                     <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.dot.score" class="project-link">DotScore Android</a>
-                        <a href="https://apps.apple.com/sa/app/dotscore/id6478232907" class="project-link">DotScore iOS</a>
+                        <span class="project-link">Android</span>
+                        <span class="project-link">iOS</span>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Service Booking & Logistics</h3>
-                        <p>On-demand service platforms</p>
+                        <h3>Asaar Plus <!--[cite: 4] --></h3>
+                        <p>Financial Market Tracking</p>
+                    </div>
+                    <div class="project-description">
+                        Comprehensive financial and market-tracking mobile application designed for real-time monitoring of global gold, silver, and currency markets. <!--[cite: 4] -->
                     </div>
                     <div class="project-links">
-                        <a href="https://apps.apple.com/eg/app/mangoul-customer/id1532634875" class="project-link">Mangoul Customer iOS</a>
-                        <a href="https://apps.apple.com/eg/app/mangoul-service-provider/id1532841324" class="project-link">Mangoul Service Provider iOS</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.mangoul.android" class="project-link">Mangoul Android</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.mangoulpilot.android" class="project-link">Mangoul Pilot Android</a>
+                        <span class="project-link">Android</span>
+                        <span class="project-link">iOS</span>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Finance & Market Tracking</h3>
-                        <p>Financial analytics and tracking</p>
+                        <h3>Gold Fawry <!--[cite: 4] --></h3>
+                        <p>Live Gold & Currency Rates</p>
+                    </div>
+                    <div class="project-description">
+                        Comprehensive financial tracking application designed for monitoring live gold prices, silver rates, and currency exchange values with continuous updates. <!--[cite: 4] -->
                     </div>
                     <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.asaar.plus" class="project-link">Asaar Plus Android</a>
-                        <a href="https://apps.apple.com/sa/app/gold-price-today-asaar-plus/id6738624287" class="project-link">Asaar Plus iOS</a>
+                        <span class="project-link">Android</span>
+                        <span class="project-link">iOS</span>
                     </div>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Multaqa <!--[cite: 4] --></h3>
+                        <p>Lifestyle & Community</p>
+                    </div>
+                    <div class="project-description">
+                        Lifestyle and community-focused mobile application designed to empower Muslims in the UK with essential resources and services to practice their faith seamlessly. <!--[cite: 4] -->
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link">Android</span>
+                        <span class="project-link">iOS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Message Routing & Transformation <!--[cite: 4] --></h3>
+                        <p>IBM ACE Integration</p>
+                    </div>
+                    <div class="project-description">
+                        Designed and implemented message flows in IBM ACE using custom ESQL procedures and DFDL schemas to parse, transform, and route multi-format enterprise data streams. <!--[cite: 4] -->
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link">Enterprise System</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Asynchronous Messaging <!--[cite: 4] --></h3>
+                        <p>IBM MQ</p>
+                    </div>
+                    <div class="project-description">
+                        Configured IBM MQ queues and local channels to build reliable, decoupled messaging architectures between backend systems. <!--[cite: 4] -->
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link">Infrastructure</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -831,25 +800,21 @@ ERP, e-commerce, social, and lifestyle domains.
         <div class="container">
             <h2 class="section-title">Education</h2>
             <div class="education-grid">
-                <div class="education-card">
-                    <h3>Master of Information Systems</h3>
-                    <div class="institution">Tanta University – Tanta, Egypt</div>
-                    <div class="date">Started 2025 (In Progress)</div>
-                </div>
-
-                <div class="education-card">
+                
+                <div class="education-card" style="margin: 0 auto;">
                     <h3>Bachelor of Computer Science</h3>
                     <div class="institution">Tanta University – Tanta, Egypt</div>
-                    <div style="margin: 10px 0;">GPA: 3.5 / 4.0</div>
+                    <div style="margin: 10px 0;">GPA: 3.5 / 4.0 <!--[cite: 4] --></div>
                     <div class="date">2019 – 2023</div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Mohamed Elshenawy. All rights reserved.</p>
+            <p>&copy; 2026 Mohamed Elshenawy. All rights reserved.</p>
             <p>Ready to build innovative solutions together.</p>
         </div>
     </footer>
@@ -859,7 +824,6 @@ ERP, e-commerce, social, and lifestyle domains.
     </button>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -873,7 +837,6 @@ ERP, e-commerce, social, and lifestyle domains.
             });
         });
 
-        // Add scroll effect to navigation
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             if (window.scrollY > 100) {
@@ -883,7 +846,6 @@ ERP, e-commerce, social, and lifestyle domains.
             }
         });
 
-        // Add intersection observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -898,7 +860,6 @@ ERP, e-commerce, social, and lifestyle domains.
             });
         }, observerOptions);
 
-        // Observe timeline items and skill categories
         document.querySelectorAll('.timeline-item, .skill-category, .project-card, .education-card').forEach(item => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
@@ -906,46 +867,15 @@ ERP, e-commerce, social, and lifestyle domains.
             observer.observe(item);
         });
 
-        // Parallax Effect
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.project-card, .skill-category, .education-card');
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const cardX = rect.left + rect.width / 2;
-                const cardY = rect.top + rect.height / 2;
-
-                const angleX = (mouseY - cardY) / 30;
-                const angleY = (mouseX - cardX) / -30;
-
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
-            });
-        });
-
-        // Reset card position when mouse leaves
-        document.addEventListener('mouseleave', () => {
-            const cards = document.querySelectorAll('.project-card, .skill-category, .education-card');
-            cards.forEach(card => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            });
-        });
-
-        // Add floating animation to profile photo
         const profilePhoto = document.querySelector('.profile-photo');
         profilePhoto.style.animation = 'float 6s ease-in-out infinite';
 
-        // Back to Top button functionality
         const backToTopButton = document.getElementById('backToTop');
 
-        // Show button when scrolling down
         window.addEventListener('scroll', () => {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             const scrollTop = window.scrollY;
-            
-            // Show button when user has scrolled 80% of the page
             const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
             
             if (scrollPercentage > 0.8) {
@@ -955,7 +885,6 @@ ERP, e-commerce, social, and lifestyle domains.
             }
         });
 
-        // Scroll to top when clicked
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
