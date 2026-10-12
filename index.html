@@ -1,930 +1,153 @@
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/image.PNG">
-
-    <title>Mohamed Elshenawy - Software Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --border: #e5e7eb;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-10px) rotate(-2deg); }
-            75% { transform: translateY(10px) rotate(2deg); }
-        }
-
-        .hero {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            margin: 0 auto 30px;
-            object-fit: cover;
-            animation: slideInUp 0.8s ease-out;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            animation: slideInUp 0.8s ease-out;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-            animation: slideInUp 0.8s ease-out 0.2s both;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.8;
-            animation: slideInUp 0.8s ease-out 0.4s both;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-            animation: slideInUp 0.8s ease-out 0.6s both;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-2px);
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .nav-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        section:nth-child(even) {
-            background: var(--surface);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            color: var(--text-primary);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        /* Experience */
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: var(--gradient);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background: inherit;
-            width: 50%;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .timeline-item::after {
-            display: none; 
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .timeline-content h3 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content .company {
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .timeline-content .date {
-            background: var(--accent-color);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: var(--gradient);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-2px) scale(1.05);
-            background: var(--gradient-hover);
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .project-header {
-            background: var(--gradient);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .project-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-        
-        .project-description {
-            padding: 20px 20px 0;
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            flex-grow: 1;
-        }
-
-        .project-links {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .project-link {
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Education */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .education-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .education-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .education-card h3 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .education-card .institution {
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .education-card .date {
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-primary);
-            color: white;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .gradient-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.2rem; }
-            .nav-container { gap: 20px; flex-wrap: wrap; }
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-item::after { left: 21px; }
-            .timeline-item:nth-child(even) { left: 0%; }
-            .timeline-item:nth-child(even):after { left: 21px; }
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: var(--gradient-hover);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1b28">
+  <title>Mohamed Elshenawy | Mobile & Integration Engineer</title>
+  <meta name="description" content="Mohamed Elshenawy is a software engineer building Flutter and native mobile applications, .NET APIs, and IBM ACE enterprise integrations. Explore selected work and experience.">
+  <link rel="canonical" href="https://melshenawyarabapps.github.io/portfolio/">
+  <link rel="icon" type="image/png" href="images/image.PNG">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohamed Elshenawy | Software Engineer">
+  <meta property="og:description" content="Mobile applications. Backend APIs. Connected enterprise systems. Explore my work with Flutter, .NET, IBM ACE, and IBM MQ.">
+  <meta property="og:url" content="https://melshenawyarabapps.github.io/portfolio/">
+  <meta property="og:image" content="https://melshenawyarabapps.github.io/portfolio/images/image.PNG">
+  <meta property="og:image:alt" content="Portrait of Mohamed Elshenawy">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Mohamed Elshenawy","jobTitle":"Software Engineer","url":"https://melshenawyarabapps.github.io/portfolio/","image":"https://melshenawyarabapps.github.io/portfolio/images/image.PNG","sameAs":["https://github.com/melshenawyarabapps","https://www.linkedin.com/in/mohamed-elshenawy-80334122a/"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Tanta University"},"knowsAbout":["Flutter","iOS","Android",".NET Core","IBM App Connect Enterprise","IBM MQ","ESQL","DFDL"]}
+  </script>
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="hero">
-            <img src="images/image.PNG" alt="Profile Photo" class="profile-photo">
-            <h1>Mohamed Elshenawy</h1>
-            <p class="subtitle">Integration Engineer (IBM ACE) | Senior Mobile App Developer | .NET Backend</p>
-            <p class="description">
-                Results-driven Software Engineer with 4+ years of experience specializing in cross-platform and native mobile app development (Flutter, iOS, Android) alongside enterprise integration. <!--[cite: 4] -->
-                Skilled in IBM App Connect Enterprise (ACE), IBM MQ, ESQL logic, and DFDL message transformations. <!--[cite: 4] -->
-                Proven track record of architecting scalable mobile applications, backend APIs (.NET Core), and complex message-routing flows. <!--[cite: 4] -->
-                Experienced engineering team lead adept at technical system design, performance optimization, and seamless multi-platform integrations. <!--[cite: 4] -->
-            </p>
-            <div class="contact-info">
-                <a href="mailto:m.elshenawy61@icloud.com" class="contact-item">
-                    <span>📧</span>
-                    <span>m.elshenawy61@icloud.com</span>
-                </a>
-                <a href="tel:+201225142553" class="contact-item">
-                    <span>📞</span>
-                    <span>+20 122 514 2553</span>
-                </a>
-                <span class="contact-item">
-                    <span>📍</span>
-                    <span>Cairo, Egypt</span>
-                </span>
-            </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></symbol>
+    <symbol id="icon-mobile" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4M11 19h2"/></symbol>
+    <symbol id="icon-flow" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="6" rx="1"/><rect x="2" y="16" width="7" height="6" rx="1"/><rect x="15" y="16" width="7" height="6" rx="1"/><path d="M12 8v4H5.5v4M12 12h6.5v4"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l1.5-4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 9v5m4-7v9m4-7v5"/></symbol>
+    <symbol id="icon-sport" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 5 3-2 6H9l-2-6 5-3Zm0-4v4m9 3-4 0m0 10-2-4M7 20l2-4M3 10h4"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l5-5 3 2 6-7M17 6h4v4"/></symbol>
+    <symbol id="icon-community" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></symbol>
+    <symbol id="icon-logistics" viewBox="0 0 24 24"><path d="M3 4h11v13H3zM14 9h4l3 4v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+    <symbol id="icon-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <nav class="container navigation" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Mohamed Elshenawy, home"><span class="brand-mark">me<span>.</span></span><span class="brand-name">Mohamed Elshenawy</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" hidden><span></span><span></span><span class="sr-only">Toggle navigation</span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="#work">Selected work</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a class="nav-contact" href="#contact">Let's connect <svg class="icon"><use href="#icon-arrow"/></svg></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> SOFTWARE ENGINEER · CAIRO, EGYPT</p>
+          <h1 id="hero-title">Building mobile apps<br>and <span>connected systems.</span></h1>
+          <p class="hero-description">I'm Mohamed Elshenawy. I bring 4+ years of experience across Flutter, native iOS and Android, .NET APIs, and IBM ACE integration — with a focus on maintainable software and thoughtful engineering.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#work">Explore my work <svg class="icon"><use href="#icon-arrow"/></svg></a><a class="button button-outline" href="mailto:m.elshenawy61@icloud.com">Get in touch <svg class="icon"><use href="#icon-mail"/></svg></a></div>
+          <div class="hero-social"><a href="https://www.linkedin.com/in/mohamed-elshenawy-80334122a/" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://github.com/melshenawyarabapps" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon"><use href="#icon-external"/></svg></a><span>Flutter · .NET · IBM ACE & MQ</span></div>
         </div>
-    </div>
-</header>
-
-<nav class="glass">
-    <div class="nav-container">
-        <a href="#experience" class="nav-link animate-hover"><span class="gradient-text">Experience</span></a>
-        <a href="#skills" class="nav-link animate-hover"><span class="gradient-text">Skills</span></a>
-        <a href="#mobile-projects" class="nav-link animate-hover"><span class="gradient-text">Mobile Projects</span></a>
-        <a href="#integration-projects" class="nav-link animate-hover"><span class="gradient-text">IBM ACE</span></a>
-        <a href="#education" class="nav-link animate-hover"><span class="gradient-text">Education</span></a>
-    </div>
-</nav>
-
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Engineer</h3>
-                        <div class="company">Arab Apps Company – Tanta, Egypt</div>
-                        <div class="date">Aug 2024 – Present</div>
-                        <ul>
-                            <li>Led a team of Flutter developers delivering ERP, e-commerce, sports, and social apps</li>
-                            <li>Architected solutions and enforced coding standards, reducing bugs and improving maintainability</li>
-                            <li>Coordinated with stakeholders to align technical solutions with business requirements, ensuring 100% on-time delivery <!--[cite: 4] --></li>
-                            <li>Mentored junior developers to increase productivity and collaboration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Engineer</h3>
-                        <div class="company">ASUS Company – Mansoura, Egypt</div>
-                        <div class="date">Feb 2024 – Aug 2024</div>
-                        <ul>
-                            <li>Built complex business logic and data processing modules for ERP systems (inventory, HR, accounting) <!--[cite: 4] --></li>
-                            <li>Improved data handling algorithms, leading to faster system performance and smoother workflows <!--[cite: 4] --></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Engineer (Part-Time)</h3>
-                        <div class="company">Techniqium – London, UK, Remote</div>
-                        <div class="date">Feb 2024 – Aug 2024</div>
-                        <ul>
-                            <li>Spearheaded development of the Multaqa app, serving global Muslim users with prayer times, events, and notifications <!--[cite: 4] --></li>
-                            <li>Integrated geo-location services with 99% accuracy in time calculations <!--[cite: 4] --></li>
-                            <li>Implemented push notifications, boosting daily active users and engagement rates <!--[cite: 4] --></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Software Engineer</h3>
-                        <div class="company">Arab Apps Company – Tanta, Egypt</div>
-                        <div class="date">Jul 2022 – Feb 2024</div>
-                        <ul>
-                            <li>Developed social, chat, and sports apps with real-time integrations</li>
-                            <li>Optimized Flutter app performance, reducing load times by 25%</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-visual">
+          <div class="portrait-frame"><img src="images/image.PNG" width="1024" height="1536" alt="Mohamed Elshenawy" fetchpriority="high"><div class="portrait-caption"><span>Mohamed Elshenawy</span><small>Software Engineer</small></div></div>
+          <div class="visual-label label-mobile" aria-hidden="true"><svg class="icon"><use href="#icon-mobile"/></svg> Mobile</div>
+          <div class="visual-label label-integration" aria-hidden="true"><svg class="icon"><use href="#icon-flow"/></svg> Integration</div>
+          <span class="visual-dot dot-one" aria-hidden="true"></span><span class="visual-dot dot-two" aria-hidden="true"></span>
         </div>
+      </div>
+      <div class="container hero-summary"><div><span class="summary-number">4+</span><span>Years of engineering experience</span></div><div><svg class="icon"><use href="#icon-mobile"/></svg><span>Cross-platform & native mobile</span></div><div><svg class="icon"><use href="#icon-flow"/></svg><span>Enterprise integration & APIs</span></div></div>
     </section>
 
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                
-                <div class="skill-category">
-                    <h3>Enterprise Integration</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">IBM ACE</span>
-                        <span class="skill-tag">IBM MQ</span>
-                        <span class="skill-tag">ESQL Logic</span>
-                        <span class="skill-tag">DFDL Transformations</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Mobile Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">Native iOS (Swift)</span>
-                        <span class="skill-tag">Native Android</span>
-                        <span class="skill-tag">FCM & APNs</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Backend & APIs</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">.NET Core APIs</span>
-                        <span class="skill-tag">RESTful API Design</span>
-                        <span class="skill-tag">Firebase Functions</span>
-                        <span class="skill-tag">WebSockets / Socket.IO</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ESQL</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Java / Kotlin</span>
-                        <span class="skill-tag">Swift</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C# / C++</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Databases & Cloud</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">PostgreSQL / MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Firestore</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Testing & QA</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Unit Testing</span>
-                        <span class="skill-tag">Integration Testing</span>
-                        <span class="skill-tag">Debugging</span>
-                        <span class="skill-tag">Performance Opt.</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Engineering & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">OOP / SOLID</span>
-                        <span class="skill-tag">Design Patterns</span>
-                        <span class="skill-tag">Algorithms</span>
-                        <span class="skill-tag">Git / CI/CD</span>
-                        <span class="skill-tag">Agile/Scrum</span>
-                    </div>
-                </div>
-
-            </div>
+    <section class="work-section section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2 id="work-title">Software with a purpose.</h2></div><p>From live audio communities and sports scores to business workflows and enterprise messaging.</p></div>
+        <div class="work-toolbar"><div class="project-filters" role="group" aria-label="Filter projects" hidden><button type="button" data-filter="all" aria-pressed="true">All work <span>10</span></button><button type="button" data-filter="mobile" aria-pressed="false">Mobile apps <span>8</span></button><button type="button" data-filter="integration" aria-pressed="false">Integration <span>2</span></button></div><p class="work-note" id="project-status" role="status" aria-live="polite">10 projects · Mobile applications & enterprise integration</p></div>
+        <div class="projects-grid" id="project-grid">
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-chat" aria-hidden="true"><span class="art-number">01</span><div class="art-orbit"><svg><use href="#icon-chat"/></svg></div><span class="art-caption">CONNECT THROUGH CONVERSATION</span></div>
+            <div class="project-body"><div class="project-meta"><span>Social & live audio</span><span>Mobile</span></div><h3>Meg Chat</h3><p>Voice chat and social communities brought together through live audio rooms and real-time engagement.</p><p class="contribution"><strong>My contribution</strong> Developed and maintained the mobile application.</p><div class="tags"><span>Voice chat</span><span>Live audio rooms</span><span>Social communities</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.meg.voicechat" target="_blank" rel="noopener noreferrer" aria-label="View Meg Chat on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-kayan" aria-hidden="true"><span class="art-number">02</span><div class="art-orbit"><svg><use href="#icon-community"/></svg></div><span class="art-caption">A SPACE FOR COMMUNITY</span></div>
+            <div class="project-body"><div class="project-meta"><span>Social & live audio</span><span>iOS + Android</span></div><h3>Kayan Chat</h3><p>An interactive social and voice chat application connecting users through audio rooms and community engagement.</p><p class="contribution"><strong>My contribution</strong> Developed and maintained the mobile application.</p><div class="tags"><span>Voice communication</span><span>Live rooms</span><span>Community</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.luno.voicechat" target="_blank" rel="noopener noreferrer" aria-label="View Kayan Chat on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/us/app/kayan-chat-%D8%AF%D8%B1%D8%AF%D8%B4%D9%87-%D8%B5%D9%88%D8%AA%D9%8A%D9%87/id1598779362?l=ar" target="_blank" rel="noopener noreferrer" aria-label="View Kayan Chat on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-sport" aria-hidden="true"><span class="art-number">03</span><div class="pitch-mark"></div><div class="art-orbit"><svg><use href="#icon-sport"/></svg></div><span class="art-caption">STAY CLOSE TO THE GAME</span></div>
+            <div class="project-body"><div class="project-meta"><span>Sports & analytics</span><span>iOS + Android</span></div><h3>Dot Score</h3><p>Football analytics and live scores covering global leagues and tournaments with real-time updates.</p><p class="contribution"><strong>My contribution</strong> Developed and maintained the mobile application.</p><div class="tags"><span>Live scores</span><span>Football</span><span>Real-time updates</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.dot.score" target="_blank" rel="noopener noreferrer" aria-label="View Dot Score on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/sa/app/dot-score-live-scores/id6478232907" target="_blank" rel="noopener noreferrer" aria-label="View Dot Score on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-market" aria-hidden="true"><span class="art-number">04</span><div class="art-orbit"><svg><use href="#icon-chart"/></svg></div><span class="art-caption">MARKETS, IN REAL TIME</span></div>
+            <div class="project-body"><div class="project-meta"><span>Financial market tracking</span><span>iOS + Android</span></div><h3>Asaar Plus</h3><p>Real-time tracking of global gold, silver, and currency markets in one mobile experience.</p><p class="contribution"><strong>My contribution</strong> Developed and maintained the mobile application.</p><div class="tags"><span>Market data</span><span>Gold & silver</span><span>Currency tracking</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.asaar.plus" target="_blank" rel="noopener noreferrer" aria-label="View Asaar Plus on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/sa/app/gold-price-today-asaar-plus/id6738624287" target="_blank" rel="noopener noreferrer" aria-label="View Asaar Plus on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-gold" aria-hidden="true"><span class="art-number">05</span><div class="art-orbit"><svg><use href="#icon-chart"/></svg></div><span class="art-caption">FOLLOW THE VALUE</span></div>
+            <div class="project-body"><div class="project-meta"><span>Price & currency tracking</span><span>iOS + Android</span></div><h3>Gold Fawry</h3><p>Live gold prices, silver rates, and currency exchange values with continuous market updates.</p><p class="contribution"><strong>My contribution</strong> Developed and maintained the mobile application.</p><div class="tags"><span>Live prices</span><span>Silver rates</span><span>Exchange values</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.saudi.goldprice" target="_blank" rel="noopener noreferrer" aria-label="View Gold Fawry on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/us/app/gold-price-today-gold-fawry/id6751434347" target="_blank" rel="noopener noreferrer" aria-label="View Gold Fawry on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-multaqa" aria-hidden="true"><span class="art-number">06</span><div class="art-orbit"><svg><use href="#icon-community"/></svg></div><span class="art-caption">RESOURCES THAT BRING PEOPLE TOGETHER</span></div>
+            <div class="project-body"><div class="project-meta"><span>Lifestyle & community</span><span>iOS + Android</span></div><h3>Multaqa</h3><p>A community application for Muslims in the UK, with prayer times, events, notifications, and everyday resources.</p><p class="contribution"><strong>My contribution</strong> Led development and integrated location services and push notifications at Techniqium.</p><div class="tags"><span>Prayer times</span><span>Location services</span><span>Push notifications</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=io.multaqa" target="_blank" rel="noopener noreferrer" aria-label="View Multaqa on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/eg/app/multaqa/id6479318135" target="_blank" rel="noopener noreferrer" aria-label="View Multaqa on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-logistics" aria-hidden="true"><span class="art-number">07</span><div class="art-orbit"><svg><use href="#icon-logistics"/></svg></div><span class="art-caption">SERVICES WITHIN REACH</span></div>
+            <div class="project-body"><div class="project-meta"><span>Services & logistics</span><span>iOS + Android</span></div><h3>Mangoul Customer</h3><p>An on-demand booking application connecting customers with local service providers and real-time logistics tracking.</p><div class="tags"><span>Service booking</span><span>Logistics</span><span>Customer experience</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.mangoul.android" target="_blank" rel="noopener noreferrer" aria-label="View Mangoul Customer on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/us/app/mangoul-customer/id1532634875" target="_blank" rel="noopener noreferrer" aria-label="View Mangoul Customer on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card" data-category="mobile">
+            <div class="project-art art-provider" aria-hidden="true"><span class="art-number">08</span><div class="art-orbit"><svg><use href="#icon-logistics"/></svg></div><span class="art-caption">MAKING SERVICE DELIVERY FLOW</span></div>
+            <div class="project-body"><div class="project-meta"><span>Services & logistics</span><span>iOS + Android</span></div><h3>Mangoul Provider</h3><p>A companion platform for service providers to manage requests, optimize routes, and handle deliveries.</p><div class="tags"><span>Request management</span><span>Routes</span><span>Service providers</span></div><div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.mangoulpilot.android" target="_blank" rel="noopener noreferrer" aria-label="View Mangoul Provider on Google Play">Google Play <svg class="icon"><use href="#icon-external"/></svg></a><a href="https://apps.apple.com/ye/app/mangoul-service-provider/id1532841324" target="_blank" rel="noopener noreferrer" aria-label="View Mangoul Provider on the App Store">App Store <svg class="icon"><use href="#icon-external"/></svg></a></div></div>
+          </article>
+          <article class="project-card integration-card" data-category="integration">
+            <div class="project-art art-integration" aria-hidden="true"><span class="art-number">09</span><div class="flow-visual"><span>Parse</span><svg class="icon"><use href="#icon-arrow"/></svg><span>Transform</span><svg class="icon"><use href="#icon-arrow"/></svg><span>Route</span></div><span class="art-caption">ENTERPRISE MESSAGE FLOWS</span></div>
+            <div class="project-body"><div class="project-meta"><span>Enterprise integration</span><span>IBM ACE</span></div><h3>Message routing & transformation</h3><p>Designed IBM ACE flows using custom ESQL procedures and DFDL schemas to parse, transform, and route enterprise data across multiple formats.</p><div class="tags"><span>IBM ACE</span><span>ESQL</span><span>DFDL</span><span>Message routing</span></div></div>
+          </article>
+          <article class="project-card integration-card" data-category="integration">
+            <div class="project-art art-mq" aria-hidden="true"><span class="art-number">10</span><div class="flow-visual"><span>Producer</span><svg class="icon"><use href="#icon-arrow"/></svg><span>Queue</span><svg class="icon"><use href="#icon-arrow"/></svg><span>Consumer</span></div><span class="art-caption">SYSTEMS CONNECTED, RELIABLY</span></div>
+            <div class="project-body"><div class="project-meta"><span>Asynchronous messaging</span><span>IBM MQ</span></div><h3>Messaging & queuing</h3><p>Configured IBM MQ queues and local channels to support reliable, decoupled asynchronous communication between backend systems.</p><div class="tags"><span>IBM MQ</span><span>Queues & channels</span><span>Decoupled systems</span></div></div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Section 1: Mobile App Projects -->
-    <section id="mobile-projects">
-        <div class="container">
-            <h2 class="section-title">Mobile App Projects</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Meg Chat</h3>
-                        <p>Voice Chat & Social Community</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Meg Chat, a voice chat and social community mobile application connecting users globally for interactive communication, live audio rooms, and real-time social engagement. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.meg.voicechat" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Kayan Chat</h3>
-                        <p>Interactive Social Platform</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Kayan, an interactive social and voice chat mobile application designed to connect users globally through live audio rooms and community engagement. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.luno.voicechat" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/us/app/kayan-chat-دردشه-صوتيه/id1598779362" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>DotScore</h3>
-                        <p>Sports Analytics & Tracking</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Dot Score, a comprehensive sports analytics and live-score mobile application delivering real-time updates for global football leagues and tournaments. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.dot.score" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/sa/app/dot-score-live-scores/id6478232907" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Asaar Plus</h3>
-                        <p>Financial Market Tracking</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Asaar Plus, a comprehensive financial and market-tracking mobile application designed for real-time monitoring of global gold, silver, and currency markets. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.asaar.plus" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/sa/app/gold-price-today-asaar-plus/id6738624287" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Gold Fawry</h3>
-                        <p>Live Gold & Currency Rates</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Gold Fawry, a comprehensive financial tracking application designed for monitoring live gold prices, silver rates, and currency exchange values with continuous updates. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.saudi.goldprice" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/us/app/gold-price-today-gold-fawry/id6751434347" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Multaqa</h3>
-                        <p>Lifestyle & Community</p>
-                    </div>
-                    <div class="project-description">
-                        Developed and maintained Multaqa, a lifestyle and community-focused mobile application designed to empower Muslims in the UK with essential resources and services to practice their faith seamlessly. <!--[cite: 4] -->
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=io.multaqa" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/eg/app/multaqa/id6479318135" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Mangoul Customer</h3>
-                        <p>Service Booking & Logistics</p>
-                    </div>
-                    <div class="project-description">
-                        An on-demand service booking application designed to seamlessly connect users with local service providers and track logistics in real-time.
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.mangoul.android" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/us/app/mangoul-customer/id1532634875" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Mangoul Provider</h3>
-                        <p>Service Booking & Logistics</p>
-                    </div>
-                    <div class="project-description">
-                        A dedicated platform for service providers and pilots to manage incoming customer requests, optimize routes, and handle deliveries efficiently.
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.mangoulpilot.android" target="_blank" rel="noopener noreferrer" class="project-link">Android</a>
-                        <a href="https://apps.apple.com/ye/app/mangoul-service-provider/id1532841324" target="_blank" rel="noopener noreferrer" class="project-link">iOS</a>
-                    </div>
-                </div>
-
-            </div>
+    <section class="section expertise-section" id="expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">02 / EXPERTISE</p><h2 id="expertise-title">Across the application stack.</h2></div><p>Practical experience connecting the mobile experience, backend services, and enterprise data.</p></div>
+        <div class="expertise-grid">
+          <article><span class="expertise-number">01</span><svg class="icon"><use href="#icon-mobile"/></svg><h3>Mobile development</h3><p>Flutter and Dart · Swift for iOS · Java and Kotlin for Android · Background services · FCM and APNs</p></article>
+          <article><span class="expertise-number">02</span><svg class="icon"><use href="#icon-flow"/></svg><h3>Enterprise integration</h3><p>IBM App Connect Enterprise · IBM MQ · ESQL · DFDL message transformations · Message routing</p></article>
+          <article><span class="expertise-number">03</span><svg class="icon"><use href="#icon-code"/></svg><h3>Backend & real-time systems</h3><p>.NET Core and C# · RESTful API design · Firebase Functions · WebSockets · Socket.IO</p></article>
+          <article><span class="expertise-number">04</span><svg class="icon"><use href="#icon-data"/></svg><h3>Databases & cloud</h3><p>Firestore and Realtime Database · Firebase Authentication · PostgreSQL · MySQL · MongoDB basics</p></article>
+          <article><span class="expertise-number">05</span><svg class="icon"><use href="#icon-code"/></svg><h3>Engineering quality</h3><p>OOP and SOLID · Design patterns · Data structures and algorithms · Unit and integration testing · Performance optimization</p></article>
+          <article><span class="expertise-number">06</span><svg class="icon"><use href="#icon-community"/></svg><h3>Team leadership & delivery</h3><p>Architecture and code standards · Mentoring · Git and CI/CD · Agile/Scrum · Postman · Jira</p></article>
         </div>
+      </div>
     </section>
 
-    <!-- Section 2: Integration Projects -->
-    <section id="integration-projects">
-        <div class="container">
-            <h2 class="section-title">Integration Projects (IBM ACE)</h2>
-            <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));">
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Enterprise Message Routing & Transformation</h3>
-                        <p>IBM ACE Integration</p>
-                    </div>
-                    <div class="project-description">
-                        Designed and implemented message flows in IBM ACE using custom ESQL procedures and DFDL schemas to parse, transform, and route multi-format enterprise data streams. <!--[cite: 4] -->
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Asynchronous Messaging & Queuing</h3>
-                        <p>IBM MQ Architecture</p>
-                    </div>
-                    <div class="project-description">
-                        Configured IBM MQ queues and local channels to build reliable, decoupled messaging architectures between backend systems. <!--[cite: 4] -->
-                    </div>
-                </div>
-
-            </div>
+    <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">03 / EXPERIENCE</p><h2 id="experience-title">Built through hands-on work.</h2></div><p>Developing products, improving performance, and helping teams deliver maintainable software.</p></div>
+        <div class="experience-list">
+          <article class="experience-item"><div class="experience-date"><span class="current-tag">CURRENT</span><p><time datetime="2024-08">Aug 2024</time> — Present</p><small>Tanta, Egypt</small></div><div class="experience-content"><div class="experience-heading"><h3>Arab Apps</h3><span>Software Engineer</span></div><ul><li>Lead Flutter developers delivering ERP, e-commerce, sports, and social applications.</li><li>Design application architecture and establish coding standards to improve maintainability.</li><li>Work with stakeholders to align solutions with business requirements and deliver on schedule.</li><li>Mentor junior developers and support effective collaboration.</li></ul></div></article>
+          <article class="experience-item"><div class="experience-date"><p><time datetime="2024-02">Feb 2024</time> — <time datetime="2024-08">Aug 2024</time></p><small>Mansoura, Egypt</small></div><div class="experience-content"><div class="experience-heading"><h3>ASUS</h3><span>Software Engineer</span></div><ul><li>Built ERP business logic and data processing modules for inventory, HR, and accounting.</li><li>Improved data handling algorithms to increase performance and streamline workflows.</li></ul></div></article>
+          <article class="experience-item"><div class="experience-date"><p><time datetime="2024-02">Feb 2024</time> — <time datetime="2024-08">Aug 2024</time></p><small>London, UK · Remote · Part-time</small></div><div class="experience-content"><div class="experience-heading"><h3>Techniqium</h3><span>Software Engineer</span></div><ul><li>Led development of Multaqa, including prayer times, events, and notifications.</li><li>Integrated geolocation for location-aware services and prayer-time calculations.</li><li>Implemented push notifications to keep users informed and support engagement.</li></ul></div></article>
+          <article class="experience-item"><div class="experience-date"><p><time datetime="2022-07">Jul 2022</time> — <time datetime="2024-02">Feb 2024</time></p><small>Tanta, Egypt</small></div><div class="experience-content"><div class="experience-heading"><h3>Arab Apps</h3><span>Software Engineer</span></div><ul><li>Developed social, chat, and sports applications with real-time integrations.</li><li>Optimized Flutter application performance, reducing load times by <strong>25%.</strong></li></ul></div></article>
         </div>
+        <div class="education" id="education"><div><p class="eyebrow">EDUCATION</p><h3>Bachelor of Computer Science</h3><p>Tanta University · Tanta, Egypt</p></div><div class="education-details"><span>2019 — 2023</span><strong>GPA 3.5 / 4.0</strong></div></div>
+      </div>
     </section>
 
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-grid">
-                
-                <div class="education-card" style="margin: 0 auto;">
-                    <h3>Bachelor of Computer Science</h3>
-                    <div class="institution">Tanta University – Tanta, Egypt</div>
-                    <div style="margin: 10px 0;">GPA: 3.5 / 4.0 <!--[cite: 4] --></div>
-                    <div class="date">2019 – 2023</div>
-                </div>
-
-            </div>
-        </div>
+    <section class="contact-section section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid"><div><p class="eyebrow">04 / LET'S CONNECT</p><h2 id="contact-title">Have a product or<br>an integration in mind?</h2><p>Let's talk about mobile engineering, backend development, or connecting your systems.</p><a class="button button-primary" href="mailto:m.elshenawy61@icloud.com">Start a conversation <svg class="icon"><use href="#icon-arrow"/></svg></a></div><div class="contact-details"><a href="mailto:m.elshenawy61@icloud.com"><span>EMAIL</span><strong>m.elshenawy61@icloud.com</strong><svg class="icon"><use href="#icon-external"/></svg></a><a href="https://www.linkedin.com/in/mohamed-elshenawy-80334122a/" target="_blank" rel="noopener noreferrer"><span>LINKEDIN</span><strong>Connect with me</strong><svg class="icon"><use href="#icon-external"/></svg></a><a href="https://github.com/melshenawyarabapps" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>Explore my repositories</strong><svg class="icon"><use href="#icon-external"/></svg></a><a href="tel:+201225142553"><span>PHONE</span><strong>+20 122 514 2553</strong><svg class="icon"><use href="#icon-external"/></svg></a><p>Cairo, Egypt</p></div></div>
     </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Mohamed Elshenawy. All rights reserved.</p>
-            <p>Ready to build innovative solutions together.</p>
-        </div>
-    </footer>
-
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        ↑
-    </button>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.timeline-item, .skill-category, .project-card, .education-card').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(item);
-        });
-
-        const profilePhoto = document.querySelector('.profile-photo');
-        profilePhoto.style.animation = 'float 6s ease-in-out infinite';
-
-        const backToTopButton = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.scrollY;
-            const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
-            
-            if (scrollPercentage > 0.8) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+  </main>
+  <footer class="site-footer"><div class="container footer-content"><p>© <span id="year">2026</span> Mohamed Elshenawy</p><span>Mobile applications · Backend APIs · Enterprise integration</span><a href="#home">Back to top <svg class="icon"><use href="#icon-arrow"/></svg></a></div></footer>
 </body>
 </html>
